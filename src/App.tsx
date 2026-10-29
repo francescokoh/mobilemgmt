@@ -29,25 +29,30 @@ export function App() {
   }, []);
 
   if (session === undefined) return <p className="center">불러오는 중…</p>;
-  if (!session) {
-    return (
-      <div className="center">
-        <h1>게임 숙제</h1>
-        <button
-          className="primary"
-          onClick={() =>
-            supabase.auth.signInWithOAuth({
-              provider: 'google',
-              options: { redirectTo: window.location.origin + window.location.pathname },
-            })
-          }
-        >
-          Google로 로그인
-        </button>
-      </div>
-    );
-  }
+  if (!session) return <Login />;
   return <Home />;
+}
+
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) setError('로그인에 실패했습니다');
+  }
+
+  return (
+    <form className="center" onSubmit={submit}>
+      <h1>게임 숙제</h1>
+      <input type="email" placeholder="이메일" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <input type="password" placeholder="비밀번호" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <button className="primary" type="submit">로그인</button>
+      {error && <p className="error">{error}</p>}
+    </form>
+  );
 }
 
 function Home() {

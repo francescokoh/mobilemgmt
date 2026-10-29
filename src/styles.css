@@ -40,4 +40,5 @@ li.done { opacity: 0.45; }
 input[type='checkbox'] { width: 24px; height: 24px; }
 .counter { display: flex; align-items: center; gap: 8px; }
 .counter button { width: 36px; height: 36px; padding: 0; }
+input[type='email'], input[type='password'] { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--fg); min-width: 260px; }
 .error { color: #d93025; }
