@@ -1,0 +1,17 @@
+{
+  "id": "example",
+  "name": "예시 게임",
+  "order": 1,
+  "timezone": "Asia/Seoul",
+  "resetHour": 5,
+  "weekStartsOn": 1,
+  "source": { "url": "https://example.com/guide", "checkedAt": "2026-10-29" },
+  "tasks": [
+    { "id": "login", "name": "출석 체크", "kind": "check", "cycle": { "type": "daily" } },
+    { "id": "stamina", "name": "스태미나 소진", "kind": "count", "target": 3, "cycle": { "type": "daily" } },
+    { "id": "raid", "name": "주간 레이드", "kind": "count", "target": 2, "cycle": { "type": "weekly" } },
+    { "id": "pass", "name": "월간 패스 보상", "kind": "check", "cycle": { "type": "monthly" } },
+    { "id": "boss28", "name": "28일 보스", "kind": "check", "cycle": { "type": "everyNDays", "days": 28, "anchor": "2026-10-01" } },
+    { "id": "event-halloween", "name": "할로윈 이벤트", "kind": "count", "target": 5, "endsAt": "2026-11-05", "cycle": { "type": "daily" } }
+  ]
+}
